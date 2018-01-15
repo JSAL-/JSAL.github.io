@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>React组件样式实现指南 | for the fun of it</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接：The best “styling in React” tutorial you’ve ever seen  作者:Neo Ighodaro 翻译:Yuki 阅读时间:&amp;lt;10min 前言你大概已经读过很多介绍实现react样式的文章（虽然我觉得其实并没有那么多这样的文章），或者你从来没有读过，你也许会怀疑，这篇文章是否真的如标题所说，介绍的是最好的实现方式？答案是肯定的，而且你可以">
+<meta name="keywords" content="React,Front-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React组件样式实现指南">
+<meta property="og:url" content="http://yoursite.com/2018/01/15/React组件样式实现指南/index.html">
+<meta property="og:site_name" content="for the fun of it">
+<meta property="og:description" content="原文链接：The best “styling in React” tutorial you’ve ever seen  作者:Neo Ighodaro 翻译:Yuki 阅读时间:&amp;lt;10min 前言你大概已经读过很多介绍实现react样式的文章（虽然我觉得其实并没有那么多这样的文章），或者你从来没有读过，你也许会怀疑，这篇文章是否真的如标题所说，介绍的是最好的实现方式？答案是肯定的，而且你可以">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-01-15T10:51:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React组件样式实现指南">
+<meta name="twitter:description" content="原文链接：The best “styling in React” tutorial you’ve ever seen  作者:Neo Ighodaro 翻译:Yuki 阅读时间:&amp;lt;10min 前言你大概已经读过很多介绍实现react样式的文章（虽然我觉得其实并没有那么多这样的文章），或者你从来没有读过，你也许会怀疑，这篇文章是否真的如标题所说，介绍的是最好的实现方式？答案是肯定的，而且你可以">
+  
+    <link rel="alternate" href="/atom.xml" title="for the fun of it" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">for the fun of it</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">realYukiko now as a Web developer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-React组件样式实现指南" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/15/React组件样式实现指南/" class="article-date">
+  <time datetime="2018-01-15T07:57:17.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术翻译/">技术翻译</a>
+  </div>
+
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React组件样式实现指南
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Front-end/">Front-end</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+ 
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://blog.logrocket.com/the-best-styling-in-react-tutorial-youve-ever-seen-676f1284b945" target="_blank" rel="noopener">The best “styling in React” tutorial you’ve ever seen</a> </p>
+<p>作者:Neo Ighodaro</p>
+<p>翻译:Yuki</p>
+<p>阅读时间:&lt;10min</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你大概已经读过很多介绍实现react样式的文章（虽然我觉得其实并没有那么多这样的文章），或者你从来没有读过，你也许会怀疑，这篇文章是否真的如标题所说，介绍的是最好的实现方式？答案是肯定的，而且你可以自由地使用指南里你认可的部分。</p>
+<p>阅读本文，你将学习react组件中样式的几种实现方法，并能知道具体怎么实现它们。</p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>这篇文章将介绍以下三种样式实现方式：</p>
+<ul>
+<li>Inline styling</li>
+<li>Styled Components</li>
+<li>CSS Modules</li>
+</ul>
+<p>我们将通过一个Todo实例来介绍它们。如果你刚开始学习React，推荐你先去阅读<a href="https://reactjs.org/" target="_blank" rel="noopener">React官方文档</a>。</p>
+<h2 id="先准备好一个React应用"><a href="#先准备好一个React应用" class="headerlink" title="先准备好一个React应用"></a>先准备好一个React应用</h2><p>为了更方便地学习和理解这篇文章，我们可以通过<a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="noopener">Create-React-App</a>快速创建一个Todo应用，这样我们就可以跳过自行实现Todo应用的步骤，直接开始学习样式实现方式。</p>
+<h2 id="Method-1-Inline-styling-of-React-components-内联方式"><a href="#Method-1-Inline-styling-of-React-components-内联方式" class="headerlink" title="Method #1: Inline styling of React components 内联方式"></a>Method #1: Inline styling of React components 内联方式</h2><p>在HTML中我们可以写内联的CSS样式，而在React中也可以。</p>
+<p>我们可以把CSS以属性（attributes）的方式写在React组件中，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class ToDoApp extends React.Component &#123;</span><br><span class="line">  // ...</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div style=&#123;&#123; backgroundColor: &quot;#44014C&quot;, width: &quot;300px&quot;, minHeight: &quot;200px&quot;&#125;&#125;&gt;</span><br><span class="line">        &lt;h2 style=&#123;&#123; padding: &quot;10px 20px&quot;, textAlign: &quot;center&quot;, color: &quot;white&quot;&#125;&#125;&gt;ToDo&lt;/h2&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">          &lt;p&gt;&#123;this.state.error&#125;&lt;/p&gt;</span><br><span class="line">          &lt;ToDoList value=&#123;this.state.display&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中可以看到，如果你想使用内联方式，你需要将CSS属性放在双大括号之间。</p>
+<p>首先，我们是通过JSX去渲染组件，而对于在JSX中渲染的JS表达式，它们必须被放在一对大括号里，第一对大括号正是将JS表达式放入JSX解析。而里面的那对大括号则创建了一个style对象实例，所以在这里style是作为一个对象传入组件。</p>
+<blockquote>
+<p>JSX是将XML字符加入JavaScript的一个预处理步骤，你当然可以只用React而不用JSX，只是JSX能让React代码更加优雅。JSX跟XML一样，具有标签，属性，子节点等概念。</p>
+</blockquote>
+<p>其次，需要注意的是，因为在这里style是一个对象，所以其中的属性之间是用逗号分隔的。另外，因为这是js对象属性，所以属性使用驼峰命名，而不用横线。</p>
+<p>当我们的组件需要更多更复杂的样式时，使用内联的方式确实不太好看。但是我们已经意识到，这里的style是一个对象，所以我们完全可以创建一个style的对象变量，然后把它传入组件。就让我们试一下吧。</p>
+<h2 id="创建一个style对象"><a href="#创建一个style对象" class="headerlink" title="创建一个style对象"></a>创建一个style对象</h2><p>与在JavaScript中创建对象无异，我们可以创建一个style对象并将它传给组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const TodoComponent = &#123;</span><br><span class="line">  width: &quot;300px&quot;,</span><br><span class="line">  margin: &quot;30px auto&quot;,</span><br><span class="line">  backgroundColor: &quot;#44014C&quot;,</span><br><span class="line">  minHeight: &quot;200px&quot;,</span><br><span class="line">  boxSizing: &quot;border-box&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Header = &#123;</span><br><span class="line">  padding: &quot;10px 20px&quot;,</span><br><span class="line">  textAlign: &quot;center&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  fontSize: &quot;22px&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ErrorMessage = &#123;</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  fontSize: &quot;13px&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ToDoApp extends React.Component &#123;</span><br><span class="line">  // ...</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div style=&#123;TodoComponent&#125;&gt;</span><br><span class="line">        &lt;h2 style=&#123;Header&#125;&gt;ToDo&lt;/h2&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">          &lt;p style = &#123;ErrorMessage&#125;&gt;&#123;this.state.error&#125;&lt;/p&gt;</span><br><span class="line">          &lt;ToDoList value=&#123;this.state.display&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们创建了三个对象变量：TodoComponent、Header、ErrorMessage，并将它们放入了JSX中组件属性中。我们不再在属性标签中直接写样式。</p>
+<blockquote>
+<p>注意，这里我们用的是单大括号了，因为这里对象变量本身已经是对象，不需要再用一对大括号创建一个对象。</p>
+</blockquote>
+<p>在对象中，所有的样式属性都是驼峰命名，在css中，它们会被转为由横线分割的属性，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">backgroundColor: &quot;#44014C&quot;,</span><br><span class="line">minHeight: &quot;200px&quot;,</span><br><span class="line">boxSizing: &quot;border-box&quot;</span><br></pre></td></tr></table></figure>
+<p>在css中被转换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-color: #44014C;</span><br><span class="line">min-height: 200px;</span><br><span class="line">box-sizing: border-box;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，这里的转换只适用于样式属性名，而不会处理属性值，如上文的border-box</p>
+</blockquote>
+<p>同时，你可以以变量的形式存储样式属性值并把它作为style对象属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const spacing = &quot;10px 20px&quot;;</span><br><span class="line"></span><br><span class="line">const Header = &#123;</span><br><span class="line">    margin: spacing,</span><br><span class="line">    padding: spacing</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 javaScript的世界里，我们并不推荐总是创建全局变量，但在React中，这不是什么大问题，因为文件模块是相互独立的，即使同一个命名，在不同的文件模块中并不会造成冲突。</p>
+<h2 id="多组件共享style对象"><a href="#多组件共享style对象" class="headerlink" title="多组件共享style对象"></a>多组件共享style对象</h2><p>style对象与组件不需要放在用个文件，我们可以为它们创建各自分离的js文件，将style对象所在的文件抽离成模块，再在需要它们的组件文件中引入并使用。由此可以提高代码的复用率和可维护性。</p>
+<p>首先我们创建一个单独的js文件 <em>style.js</em> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const TodoComponent = &#123;</span><br><span class="line">  width: &quot;300px&quot;,</span><br><span class="line">  margin: &quot;30px auto&quot;,</span><br><span class="line">  backgroundColor: &quot;#44014C&quot;,</span><br><span class="line">  minHeight: &quot;200px&quot;,</span><br><span class="line">  boxSizing: &quot;border-box&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Header = &#123;</span><br><span class="line">  padding: &quot;10px 20px&quot;,</span><br><span class="line">  textAlign: &quot;center&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  fontSize: &quot;22px&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ErrorMessage = &#123;</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  fontSize: &quot;13px&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const styles = &#123;</span><br><span class="line">  TodoComponent: TodoComponent,</span><br><span class="line">  Header: Header,</span><br><span class="line">  ErrorMessage: ErrorMessage</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的代码中，我们可以将所有style对象单独输出（export），如果这么做，也意味着你在使用的时候，也需要把每一个对象分别引入（import）进来，当style对象很多的时候，将会变得十分繁琐。</p>
+<p>所以我们可以将整个style文件作为一个对象输出，这样导入会更加方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">// Import the styles</span><br><span class="line">import &#123;styles&#125; from &quot;./styles&quot;;</span><br><span class="line"></span><br><span class="line">class ToDoApp extends React.Component &#123;</span><br><span class="line">  // ...</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div style=&#123;styles.TodoComponent&#125;&gt;</span><br><span class="line">        &lt;h2 style=&#123;styles.Header&#125;&gt;ToDo&lt;/h2&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">          &lt;p style = &#123;styles.ErrorMessage&#125;&gt;&#123;this.state.error&#125;&lt;/p&gt;</span><br><span class="line">          &lt;ToDoList value=&#123;this.state.display&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>import {styles} from &quot;./styles&quot;;</code> 这一行我们导入了style并可以按需使用其中的样式对象，就像使用一般的javascript对象一样。而且它可以被导入其他组件进行复用。</p>
+<p>这就是关于使用内联样式的部分了，下一部分是使用</p>
+<h2 id="Method-2-Styled-components-使用Styled-components"><a href="#Method-2-Styled-components-使用Styled-components" class="headerlink" title="Method #2: Styled components 使用Styled components"></a>Method #2: Styled components 使用Styled components</h2><p>使用Styled components，你可以真正地在js文件中写css代码。这意味着你可以使用所有css的功能，比如媒体查询（media queries）、伪类选择器（pseudo-selector）, 组合选择器(nesting)等等。</p>
+<p><a href="https://github.com/styled-components/styled-components" target="_blank" rel="noopener">Styled-components</a> 使用的是 ES6’s tagged template literals。使用Styled components，组件和样式之间的映射将被移除，这意味着当你在写样式代码的时候，你其实正在创建一个拥有这部分样式的组件。通过styled components, 我们可以创建一个可复用的具有样式的组件，下面将介绍具体的用法。</p>
+<p>首先，我们需要安装Styled components，在项目根目录下，运行:<br><code>$ npm install --save styled-components</code></p>
+<p>接下来让我们回到我们的 to-do 应用，并使用styled compnents 来实现它的样式。 首先我们需要导入styled-components包：</p>
+<p><code>import styled from &#39;styled-components&#39;;</code></p>
+<p>现在我们可以开始使用它了，我们先创建一个styled component，接着我们再来看我们应该如何使用它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const TodoComponent = styled.div`</span><br><span class="line">    background-color: #44014C;</span><br><span class="line">    width: 300px;</span><br><span class="line">    min-height: 200px;</span><br><span class="line">    margin: 30px auto;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure>
+<p>通过上面的代码我们创建了一个具有样式的组件，对于其他react组件，我们同样可以这么实现。不过，值得留意的是，我们是在JS文件中写真正的css代码。那么接下来我们将使用这个组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class ToDoApp extends React.Component &#123;</span><br><span class="line">  // ...</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;TodoComponent&gt;</span><br><span class="line">        &lt;h2&gt;ToDo&lt;/h2&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">          &lt;p&gt;&#123;this.state.error&#125;&lt;/p&gt;</span><br><span class="line">          &lt;ToDoList value=&#123;this.state.display&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;&gt;</span><br><span class="line">      &lt;/TodoComponent&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，<code>&lt;TodoComponent&gt;</code>便会使用我们创建的对应的styled component，这个标签的用法跟其他一般的HTML元素基本一样，唯一不同的是它已经具有自己的样式，就是我们在前面的代码中定义的这部分样式。</p>
+<p>对于其他元素，我们也可以为它们编写样式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import styled from &apos;styled-components&apos;;</span><br><span class="line"></span><br><span class="line">const TagComponent = styled.div`</span><br><span class="line">  background-color: #44014C;</span><br><span class="line">  width: 300px;</span><br><span class="line">  min-height: 200px;</span><br><span class="line">  margin: 30px auto;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">const Header = styled.h2`</span><br><span class="line">  padding: 10px 20px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: white;</span><br><span class="line">  fontSize: 22px</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">const ErrorMessage = styled.p`</span><br><span class="line">  color: white;</span><br><span class="line">  font-size: 13px;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">class ToDoApp extends React.Component &#123;</span><br><span class="line">  // ...</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;TagComponent&gt;</span><br><span class="line">        &lt;Header&gt;ToDo&lt;/Header&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">          &lt;ErrorMessage&gt;&#123;this.state.error&#125;&lt;/ErrorMessage&gt;</span><br><span class="line">          &lt;ToDoList value=&#123;this.state.display&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/TagComponent&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果你想知道更多关于styled components的内容，你可以阅读<a href="https://www.styled-components.com/" target="_blank" rel="noopener">Style components官方文档</a></p>
+<p>接下来让我们来说一下最后一种方式。</p>
+<h2 id="Method-3-CSS-Modules-CSS模块"><a href="#Method-3-CSS-Modules-CSS模块" class="headerlink" title="Method #3: CSS Modules CSS模块"></a>Method #3: CSS Modules CSS模块</h2><p>在这里，一个CSS模块是指一个CSS文件，在CSS文件汇总，所有的类名和动画名称都会被限制在当前文件中。注意这句话，限制在当前文件中，现在我们将要破坏这个规则。</p>
+<p>CSS 类名和动画名称将默认被放在全局中。如果是在一个比较大的样式文件中，这可能会导致大量冲突。一个样式的定义可能会被另一个所覆盖。而CSS模块解决了这个问题。CSS 类只会在用到它们的组件上起效。一个CSS模块实际上是一个编译过的<code>.css</code>文件。编译结束后我们将得到两个结果，其中一个是对类名加注版本号的CSS的文件，另一个则是一个将新类名与原始类名对应起咯爱的js对象。</p>
+<p>让我们看一下它具体是怎么使用的。如果你想更多地了解这部分内容，你可以看<a href="https://www.andrewhfarmer.com/what-are-css-modules/" target="_blank" rel="noopener">这篇文章</a>。现在就让我们来创建一个给错误信息组件加样式的CSS类。这个CSS文件我们命名为 style.css :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.error-message &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译完之后，我们会产生类似以下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.error-message_jhys &#123;</span><br><span class="line">     color: red;</span><br><span class="line">     font-size: 16px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>_jhys</code>是我自己加的一个key，用于识别这个类。像之前所说的，这里将产生一个JS对象，我们可以在react文件中导入并使用它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    error-message: error-message_jhys</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让我们看一下应该怎么使用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import styles from &apos;./styles.css&apos;;</span><br><span class="line">class Message extends React.Component &#123;</span><br><span class="line">     // ... </span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;p className = &#123;styles.error-message&#125;&gt;I am an error message&lt;/p&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>务必记得，我们使用CSS模块的目的是希望通过将CSS类与类之间相互隔离，防止造成命名冲突。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>这篇文章到这里就结束了，我们介绍了三种方法来实现React组件的样式。所有的方法都是可行的，而具体采用哪一种方案，取决于我们的项目规模。</p>
+<h2 id="译者"><a href="#译者" class="headerlink" title="译者"></a>译者</h2><p>第一次完整翻译一篇文章…确实比自己看费力多了，不过也比自己看仔细很多。希望能多翻译些较新的、有趣的技术文章，个人能力有限，我会选择一些适合碎片化阅读的技术文章，有什么推荐的资源都可以跟我说喔。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/15/React组件样式实现指南/" data-id="cjcg5xjui0001tcp2j7k7g7rn" class="article-share-link">Share</a>
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/15/日常/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          日常
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog-En/">Blog-En</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/中文博客/">中文博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术翻译/">技术翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Life/">Daily Life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Front-end/">Front-end</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常/">日常</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Daily-Life/" style="font-size: 10px;">Daily Life</a> <a href="/tags/Front-end/" style="font-size: 10px;">Front-end</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/15/Daily Life/">Daily Life</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/15/日常/">日常</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/15/React组件样式实现指南/">React组件样式实现指南</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Yuki<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
