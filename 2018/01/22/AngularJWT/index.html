@@ -7,18 +7,18 @@
   
   <title>Angular 安全 —— 使用 JSON 网络令牌（JWT）验证：完全指南 | for the fun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide 原文作者：angular-university 译文出自：掘金翻译计划 本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authe">
+  <meta name="description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide原文作者：angular-university译文出自：掘金翻译计划本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentica">
 <meta name="keywords" content="Angular,JWT,Back-end,校对／proof">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 安全 —— 使用 JSON 网络令牌（JWT）验证：完全指南">
 <meta property="og:url" content="https://realyukiko.github.io/2018/01/22/AngularJWT/index.html">
 <meta property="og:site_name" content="for the fun">
-<meta property="og:description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide 原文作者：angular-university 译文出自：掘金翻译计划 本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authe">
+<meta property="og:description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide原文作者：angular-university译文出自：掘金翻译计划本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentica">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-01-22T09:07:49.000Z">
+<meta property="og:updated_time" content="2018-01-22T09:25:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 安全 —— 使用 JSON 网络令牌（JWT）验证：完全指南">
-<meta name="twitter:description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide 原文作者：angular-university 译文出自：掘金翻译计划 本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authe">
+<meta name="twitter:description" content="原文地址：Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide原文作者：angular-university译文出自：掘金翻译计划本文永久链接：https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentica">
   
     <link rel="alternate" href="/atom.xml" title="for the fun" type="application/atom+xml">
   
@@ -96,17 +96,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<ul>
-<li>原文地址：<a href="https://blog.angular-university.io/angular-jwt-authentication/" target="_blank" rel="noopener">Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide</a></li>
-<li>原文作者：<a href="https://blog.angular-university.io" target="_blank" rel="noopener">angular-university</a></li>
-<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="noopener">掘金翻译计划</a></li>
-<li>本文永久链接：<a href="https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentication.md" target="_blank" rel="noopener">https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentication.md</a></li>
-<li>译者：<a href="https://github.com/Raoul1996" target="_blank" rel="noopener">Raoul1996</a></li>
-<li>校对者：<a href="https://github.com/Tina92" target="_blank" rel="noopener">Tina92</a>、<a href="https://github.com/realYukiko" target="_blank" rel="noopener">realYukiko</a></li>
-</ul>
-</blockquote>
-<h1 id="Angular-安全-——-使用-JSON-网络令牌（JWT）的身份认证：完全指南"><a href="#Angular-安全-——-使用-JSON-网络令牌（JWT）的身份认证：完全指南" class="headerlink" title="Angular 安全 —— 使用 JSON 网络令牌（JWT）的身份认证：完全指南"></a>Angular 安全 —— 使用 JSON 网络令牌（JWT）的身份认证：完全指南</h1><p>本文是在 Angular 应用中设计和实现基于 JWT（JSON Web Tokens）身份验证的分步指南。</p>
+        <p>原文地址：<a href="https://blog.angular-university.io/angular-jwt-authentication/" target="_blank" rel="noopener">Angular Security - Authentication With JSON Web Tokens (JWT): The Complete Guide</a><br>原文作者：<a href="https://blog.angular-university.io" target="_blank" rel="noopener">angular-university</a><br>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="noopener">掘金翻译计划</a><br>本文永久链接：<a href="https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentication.md" target="_blank" rel="noopener">https://github.com/xitu/gold-miner/blob/master/TODO/angular-jwt-authentication.md</a><br>译者：<a href="https://github.com/Raoul1996" target="_blank" rel="noopener">Raoul1996</a><br>校对者：<a href="https://github.com/Tina92" target="_blank" rel="noopener">Tina92</a>、<a href="https://github.com/realYukiko" target="_blank" rel="noopener">realYukiko</a></p>
+<p>本文是在 Angular 应用中设计和实现基于 JWT（JSON Web Tokens）身份验证的分步指南。</p>
 <p>我们的目标是系统的讨论<strong>基于 JWT 的认证设计和实现</strong>，衡量取舍不同的设计方案，并将其应用到某个 Angular 应用特定的上下文中。</p>
 <p>我们将追踪一个 JWT 从被认证服务器创建开始，到它被返回到客户端，再到它被返回到应用服务器的全程，并讨论其中涉及的所有的方案以及做出的决策。</p>
 <p>由于身份验证同样需要一些服务端代码，所以我们将同时显示这些信息，以便我们可以掌握整个上下文，并且看清楚各个部分之间如何协作。</p>
@@ -385,7 +376,7 @@
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Back-end/">Back-end</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JWT/">JWT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/校对／proof/">校对／proof</a></li></ul>
        
-      <a data-url="https://realyukiko.github.io/2018/01/22/AngularJWT/" data-id="cjcpzohx60007czp2skyrwkc0" class="article-share-link">Share</a>
+      <a data-url="https://realyukiko.github.io/2018/01/22/AngularJWT/" data-id="cjcq0brzy0001r6p22dstnldi" class="article-share-link">Share</a>
       
         <a href="https://realyukiko.github.io/2018/01/22/AngularJWT/#disqus_thread" class="article-comment-link">Comments</a>
       
